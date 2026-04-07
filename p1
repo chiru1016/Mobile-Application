@@ -1,0 +1,172 @@
+package com.example.chiru;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            EditText edun = findViewById(R.id.editUser);
+            EditText edpass = findViewById(R.id.editPass);
+            Button submit = findViewById(R.id.SubmitButton);
+            Button clear = findViewById(R.id.clearButton);
+            ProgressBar PG = findViewById(R.id.pgbar100);
+            TextView pper = findViewById(R.id.progressper);
+
+            submit.setOnClickListener(v -> new Thread(() -> {
+                for (int i = 0; i <= 100; i++) {
+                    int progress = i;
+                    try { Thread.sleep(100); } catch (Exception ignored) {}
+
+                    runOnUiThread(() -> {
+                        PG.setProgress(progress);
+                        pper.setText("progress: " + progress);
+
+                        if (progress == 100) {
+                            new AlertDialog.Builder(MainActivity.this)
+                                    .setTitle("Download Complete")
+                                    .setMessage("Download Complete")
+                                    .setPositiveButton("OK", (d, w) -> finish())
+                                    .setNegativeButton("Cancel", null)
+                                    .show();
+                        }
+                    });
+                }
+            }).start());
+
+            clear.setOnClickListener(v -> {
+                edun.setText("");
+                edpass.setText("");
+                PG.setProgress(0);
+                pper.setText("Progress Percentage:");
+            });
+        }
+    }
+
+    xml
+    <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4CAF50"
+    tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rv College of Engineering"
+            android:textSize="24sp"
+            android:background="#FFEB3B"
+            android:textColor="#3F51B5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Screen"
+            android:textSize="24sp"
+            android:background="#3F51B5"
+            android:textColor="#CDDC39"
+            app:layout_constraintTop_toBottomOf="@id/title1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/unameview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/title2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/editUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            app:layout_constraintTop_toBottomOf="@id/title2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/title4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/unameview"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/editPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@id/editUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/SubmitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            app:layout_constraintTop_toBottomOf="@id/editPass"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            app:layout_constraintTop_toBottomOf="@id/editPass"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"/>
+
+        <ProgressBar
+            android:id="@+id/pgbar100"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            app:layout_constraintTop_toBottomOf="@id/SubmitButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/progressper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Progress Percentage:"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/pgbar100"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
