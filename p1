@@ -1,60 +1,72 @@
-package com.example.chiru;
+package com.example.loginform;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+    EditText edun, edpass;
+    Button submit, clear;
+    ProgressBar PG;
+    TextView pper;
 
-            EditText edun = findViewById(R.id.editUser);
-            EditText edpass = findViewById(R.id.editPass);
-            Button submit = findViewById(R.id.SubmitButton);
-            Button clear = findViewById(R.id.clearButton);
-            ProgressBar PG = findViewById(R.id.pgbar100);
-            TextView pper = findViewById(R.id.progressper);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            submit.setOnClickListener(v -> new Thread(() -> {
-                for (int i = 0; i <= 100; i++) {
-                    int progress = i;
-                    try { Thread.sleep(100); } catch (Exception ignored) {}
+        edun = findViewById(R.id.editUser);
+        edpass = findViewById(R.id.editPass);
+        submit = findViewById(R.id.SubmitButton);
+        clear = findViewById(R.id.clearButton);
+        PG = findViewById(R.id.pgbar100);
+        pper = findViewById(R.id.progressper);
 
-                    runOnUiThread(() -> {
-                        PG.setProgress(progress);
-                        pper.setText("progress: " + progress);
+        submit.setOnClickListener(v -> startProgress());
 
-                        if (progress == 100) {
-                            new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("Download Complete")
-                                    .setMessage("Download Complete")
-                                    .setPositiveButton("OK", (d, w) -> finish())
-                                    .setNegativeButton("Cancel", null)
-                                    .show();
-                        }
-                    });
-                }
-            }).start());
-
-            clear.setOnClickListener(v -> {
-                edun.setText("");
-                edpass.setText("");
-                PG.setProgress(0);
-                pper.setText("Progress Percentage:");
-            });
-        }
+        clear.setOnClickListener(v -> {
+            edun.setText("");
+            edpass.setText("");
+            PG.setProgress(0);
+            pper.setText("Progress Percentage:");
+        });
     }
+
+    private void startProgress() {
+        new Thread(() -> {
+            for (int i = 0; i <= 100; i++) {
+                int progress = i;
+
+                try {
+                    Thread.sleep(100);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(() -> {
+                    PG.setProgress(progress);
+                    pper.setText("progress: " + progress);
+
+                    if (progress == 100) {
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Download Complete")
+                                .setMessage("Download Complete")
+                                .setPositiveButton("OK", (d, w) -> finish())
+                                .setNegativeButton("Cancel", null)
+                                .show();
+                    }
+                });
+            }
+        }).start();
+    }
+}
+
 
     xml
     <?xml version="1.0" encoding="utf-8"?>
