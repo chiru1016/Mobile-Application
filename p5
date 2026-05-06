@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program 8</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<h3>Simple Image</h3>
+
+<img src="img/camera.jpg" width="120">
+
+<script src="/js/start.js"></script>
+
+</body>
+</html>
