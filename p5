@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Program 8</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
+  <title>Program 8</title>
 </head>
-
 <body>
 
-<h3>Simple Image</h3>
+<h3>Simple Image Display</h3>
 
-<img src="img/camera.jpg" width="120">
+<p>Image → <img src="img/camera.jpg" width="120"></p>
 
 <script src="/js/start.js"></script>
 
