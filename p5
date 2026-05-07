@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
   <title>Program 8</title>
 </head>
@@ -10,7 +8,7 @@
 
 <h3>Simple Image Display</h3>
 
-<p>Image → <img src="img/camera.jpg" width="120"></p>
+<p>Image <img src="img/camera.jpg" width="120"></p>
 
 <script src="/js/start.js"></script>
 
