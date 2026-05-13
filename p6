@@ -128,3 +128,22 @@ self.addEventListener("fetch", event => {
     );
 
 });
+
+
+{
+  "name": "Stock Display",
+  "short_name": "Stock",
+  "start_url": "/",
+  "display": "standalone",
+
+  "background_color": "#00AA00",
+  "theme_color": "#00CC00",
+
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
