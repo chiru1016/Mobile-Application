@@ -115,19 +115,33 @@ self.addEventListener("install", event => {
 
 });
 
-self.addEventListener("fetch", event => {
 
-    event.respondWith(
 
-        caches.match(event.request).then(response => {
+const files = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./data.json"
+];
 
-            return response || fetch(event.request);
-
-        })
-
-    );
-
+self.addEventListener("install", e => {
+  e.waitUntil(
+    caches.open("cache-v1")
+      .then(cache => cache.addAll(files))
+  );
 });
+
+self.addEventListener("activate", e => {
+  console.log("Service Worker Activated");
+});
+
+self.addEventListener("fetch", e => {
+  e.respondWith(
+    caches.match(e.request)
+      .then(response => response || fetch(e.request))
+  );
+});
+
 
 
 {
