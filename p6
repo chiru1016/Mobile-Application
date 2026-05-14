@@ -94,27 +94,6 @@
   }
 ]
 
-self.addEventListener("install", event => {
-
-    event.waitUntil(
-
-        caches.open("stock").then(cache => {
-
-            return cache.addAll([
-                "/",
-                "index.html",
-                "data.json",
-                "manifest.json",
-                "sw.js",
-                "assets/logo.png"
-            ]);
-
-        })
-
-    );
-
-});
-
 
 
 const files = [
