@@ -92,8 +92,20 @@
     "price_2007": 93.43,
     "symbol": "AMZN"
   }
-]
+  {
+    "company": "3M",
+    "initial_price": 44.28,
+    "price_2007": 95.85,
+    "symbol": "MMM"
+  },
 
+  {
+    "company": "Amazon",
+    "initial_price": 89.38,
+    "price_2007": 93.43,
+    "symbol": "AMZN"
+  }
+]
 
 
 const files = [
