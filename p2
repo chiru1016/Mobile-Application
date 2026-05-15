@@ -168,6 +168,6 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         TextView textView = findViewById(R.id.message);
-        textView.setText(message);
+        textView.setText(message)
     }
 }
