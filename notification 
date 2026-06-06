@@ -109,7 +109,7 @@
       setTimeout(() => {
 
         // Website 
-        new Notification("📢 Event Reminder", {
+        new Notification("Event Reminder", {
           body: `${eventName} time has arrived!`,
           icon: "https://cdn-icons-png.flaticon.com/512/1827/1827392.png"
         });
