@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  @overrid
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
