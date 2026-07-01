@@ -1,0 +1,89 @@
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("serviceworker.js")
+            .then(function (registration) {
+                console.log("Service Worker registered:", registration.scope);
+            })
+            .catch(function (error) {
+                console.log("Service Worker registration failed:", error);
+            });
+    });
+}
+
+self.addEventListener("install", function (event) {
+    console.log("Service Worker installed");
+});
+
+self.addEventListener("activate", function (event) {
+    console.log("Service Worker activated");
+});
+
+self.addEventListener("fetch", function (event) {
+    console.log("Fetching:", event.request.url);
+});
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple PWA Page</title>
+
+    <!-- Manifest file link -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#2196f3">
+</head>
+
+<body>
+
+    <h1>Welcome to My Simple HTML Page</h1>
+    <p>This is a basic example of an HTML page with manifest and service worker.</p>
+
+    <table border="1">
+        <tr>
+            <th>Picture</th>
+            <th>Description</th>
+        </tr>
+
+        <tr>
+            <td>
+                <img src="images/rvcelogo.jpg" width="100" height="100">
+            </td>
+            <td>RVCE Logo</td>
+        </tr>
+
+        <tr>
+            <td>
+                <img src="images/pwaicon.png" width="100" height="100">
+            </td>
+            <td>PWA Icon</td>
+        </tr>
+    </table>
+
+    <!-- Service worker registration -->
+    <script src="sw.js"></script>
+
+</body>
+</html>
+
+{
+    "name": "Simple PWA App",
+    "short_name": "PWA App",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2196f3",
+    "icons": [
+        {
+            "src": "images/pwaicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/pwaicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
