@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Display</title>
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Stock Market Data Display</h2>
+
+    <div id="stock"></div>
+
+    <script>
+        // Register Service Worker
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js");
+        }
+
+        // Read JSON file
+        fetch("data.json")
+            .then(response => response.json())
+            .then(data => {
+
+                let table = "<table>";
+
+                table += "<tr>";
+                table += "<th>Company</th>";
+                table += "<th>Initial Price</th>";
+                table += "<th>Price 2007</th>";
+                table += "<th>Symbol</th>";
+                table += "</tr>";
+
+                for (let item of data) {
+                    table += "<tr>";
+                    table += "<td>" + item.company + "</td>";
+                    table += "<td>" + item.initial_price + "</td>";
+                    table += "<td>" + item.price_2007 + "</td>";
+                    table += "<td>" + item.symbol + "</td>";
+                    table += "</tr>";
+                }
+
+                table += "</table>";
+
+                document.getElementById("stock").innerHTML = table;
+            });
+    </script>
+
+</body>
+</html>
