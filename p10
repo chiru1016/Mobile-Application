@@ -105,3 +105,32 @@
         }
     ]
 }
+
+
+
+
+let cacheName = "stock-cache";
+
+let files = [
+    "index.html",
+    "manifest.json",
+    "data.json",
+    "sw.js",
+    "assets/logo.png"
+];
+
+self.addEventListener("install", function (event) {
+    event.waitUntil(
+        caches.open(cacheName).then(function (cache) {
+            return cache.addAll(files);
+        })
+    );
+});
+
+self.addEventListener("fetch", function (event) {
+    event.respondWith(
+        caches.match(event.request).then(function (response) {
+            return response || fetch(event.request);
+        })
+    );
+});
