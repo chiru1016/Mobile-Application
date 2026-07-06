@@ -108,7 +108,7 @@ json data
 }
 
 
-service 
+service worker
 
 let cacheName = "stock-cache";
 
